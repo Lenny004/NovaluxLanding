@@ -1,0 +1,238 @@
+---
+const perks = [
+  'Sin cuotas de entrada',
+  'Formación continua gratuita',
+  'Soporte dedicado',
+];
+
+const businessTypes = [
+  'Comercial Independiente',
+  'Gestoría / Asesoría',
+  'Inmobiliaria',
+  'Call Center',
+  'Otro',
+];
+---
+
+<section class="contact section" id="contacto">
+  <div class="container">
+    <div class="contact-panel">
+      <div class="contact-glow" aria-hidden="true"></div>
+
+      <div class="contact-grid">
+        <div class="contact-intro">
+          <h2 class="display-lg contact-title">Únete a la red líder hoy</h2>
+          <p class="contact-lead">
+            Déjanos tus datos y un asesor se pondrá en contacto contigo para explicarte el programa de colaboración y darte de alta.
+          </p>
+
+          <ul class="contact-perks">
+            {perks.map((perk) => (
+              <li class="contact-perk">
+                <span class="material-symbols-outlined contact-perk-icon" aria-hidden="true">check_circle</span>
+                <span class="body-md">{perk}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="contact-form-wrap">
+          <form class="contact-form" action="" method="post">
+            <div class="contact-field">
+              <label class="label-md contact-label" for="contact-name">Nombre completo</label>
+              <input
+                class="contact-input"
+                id="contact-name"
+                name="name"
+                type="text"
+                placeholder="Ej. Juan Pérez"
+                required
+              />
+            </div>
+
+            <div class="contact-row">
+              <div class="contact-field">
+                <label class="label-md contact-label" for="contact-phone">Teléfono</label>
+                <input
+                  class="contact-input"
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+34 600 000 000"
+                  required
+                />
+              </div>
+              <div class="contact-field">
+                <label class="label-md contact-label" for="contact-email">Email</label>
+                <input
+                  class="contact-input"
+                  id="contact-email"
+                  name="email"
+                  type="email"
+                  placeholder="juan@email.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="contact-field">
+              <label class="label-md contact-label" for="contact-business">Tipo de negocio</label>
+              <select class="contact-input" id="contact-business" name="business" required>
+                {businessTypes.map((type) => (
+                  <option value={type}>{type}</option>
+                ))}
+              </select>
+            </div>
+
+            <button class="btn-primary contact-submit" type="submit">
+              Solicitar información
+            </button>
+
+            <p class="label-sm contact-disclaimer">
+              Al enviar aceptas nuestra política de privacidad.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--color-bg);
+  }
+
+  .contact-panel {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem;
+    border-radius: var(--radius-2xl);
+    background: var(--color-navy);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .contact-glow {
+    position: absolute;
+    top: -6rem;
+    right: -6rem;
+    width: 24rem;
+    height: 24rem;
+    border-radius: var(--radius-full);
+    background: rgba(30, 95, 140, 0.4);
+    filter: blur(5rem);
+    pointer-events: none;
+  }
+
+  .contact-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+
+  .contact-title {
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+
+  .contact-lead {
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--size-lg);
+    line-height: 1.6;
+  }
+
+  .contact-perks {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .contact-perk {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #ffffff;
+  }
+
+  .contact-perk-icon {
+    font-family: 'Material Symbols Outlined';
+    font-size: var(--size-lg);
+    color: var(--color-orange);
+  }
+
+  .contact-form-wrap {
+    padding: 2rem;
+    border-radius: var(--radius-xl);
+    background: #ffffff;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-label {
+    color: var(--color-navy);
+  }
+
+  .contact-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg);
+    color: var(--color-navy);
+    transition: border-color 0.2s ease;
+  }
+
+  .contact-input:focus {
+    outline: none;
+    border-color: var(--color-navy);
+  }
+
+  .contact-submit {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding-block: 1rem;
+  }
+
+  .contact-disclaimer {
+    text-align: center;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 48rem) {
+    .contact-panel {
+      padding: 4rem;
+    }
+
+    .contact-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

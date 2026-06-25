@@ -1,0 +1,84 @@
+---
+const legalLinks = [
+  { href: '#', label: 'Privacidad' },
+  { href: '#', label: 'Aviso Legal' },
+  { href: '#', label: 'Cookies' },
+  { href: '#contacto', label: 'Contacto' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer-inner">
+    <div class="site-footer-brand">
+      <span class="headline-md">NOVALUX Energy Partners</span>
+    </div>
+
+    <nav class="site-footer-nav" aria-label="Legal">
+      {legalLinks.map((link) => (
+        <a href={link.href} class="site-footer-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <p class="label-sm site-footer-copy">
+      © 2026 NOVALUX Energy Partners. Todos los derechos reservados.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 3rem;
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+    background: var(--color-navy);
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .site-footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding-block: 3rem;
+    text-align: center;
+  }
+
+  .site-footer-brand span {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .site-footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .site-footer-link {
+    font-size: var(--size-s);
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .site-footer-link:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .site-footer-copy {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer-inner {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+
+    .site-footer-nav {
+      margin-bottom: 0;
+    }
+  }
+</style>

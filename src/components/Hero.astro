@@ -40,7 +40,9 @@ const chartImage =
         <div class="hero-metrics">
           {metrics.map((metric) => (
             <div class="hero-metric">
-              <div class="headline-md hero-metric-value">{metric.value}</div>
+              <div class="headline-md hero-metric-value" data-count={metric.value}>
+                {metric.value}
+              </div>
               <div class="label-sm hero-metric-label">{metric.label}</div>
             </div>
           ))}
@@ -86,11 +88,53 @@ const chartImage =
   </div>
 </section>
 
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
+      const target = el.dataset.count ?? '';
+      el.textContent = target.replace(/\d+/g, '0');
+
+      const range = target.match(/^(\d+)-(\d+)(.*)$/);
+      const single = target.match(/^(\D*)(\d+)$/);
+
+      if (range) {
+        const maxA = Number(range[1]);
+        const maxB = Number(range[2]);
+        const suffix = range[3];
+        let a = 0;
+        let b = 0;
+
+        const timer = setInterval(() => {
+          a = Math.min(a + 1, maxA);
+          b = Math.min(b + 1, maxB);
+          el.textContent = `${a}-${b}${suffix}`;
+          if (a >= maxA && b >= maxB) clearInterval(timer);
+        }, 35);
+        return;
+      }
+
+      if (!single) return;
+
+      const prefix = single[1];
+      const max = Number(single[2]);
+      const step = Math.max(1, Math.round(max / 40));
+      let n = 0;
+
+      const timer = setInterval(() => {
+        n = Math.min(n + step, max);
+        el.textContent = `${prefix}${n}`;
+        if (n >= max) clearInterval(timer);
+      }, 40);
+    });
+  }
+</script>
+
 <style>
   .hero {
     position: relative;
     overflow: hidden;
     padding-block: 6rem 8rem;
+    background: #ffffff;
   }
 
   .hero-bg {
@@ -172,9 +216,18 @@ const chartImage =
     border-top: 1px solid var(--color-border);
   }
 
+  .hero-metric{
+    transition: all 0.3s ease;
+  }
+
+  .hero-metric:hover{
+    transform: translateY(-0.125rem);
+  }
+
   .hero-metric-value {
     color: var(--color-navy);
     font-weight: 700;
+    font-variant-numeric: tabular-nums;
   }
 
   .hero-metric-label {
@@ -182,9 +235,11 @@ const chartImage =
   }
 
   .hero-visual {
-    display: none;
     position: relative;
     height: 37.5rem;
+    width: 100%;
+    max-width: 36rem;
+    margin-inline: auto;
   }
 
   .hero-card {
@@ -195,7 +250,7 @@ const chartImage =
 
   .hero-card--energy {
     top: 2.5rem;
-    right: 2.5rem;
+    right: 0;
     width: 16rem;
     padding: 1.5rem;
     box-shadow: var(--shadow-soft);
@@ -204,7 +259,7 @@ const chartImage =
 
   .hero-card--income {
     bottom: 5rem;
-    left: 2.5rem;
+    left: 0;
     width: 18rem;
     padding: 1.5rem;
     background: var(--color-navy);
@@ -276,9 +331,11 @@ const chartImage =
 
   .hero-image-wrap {
     position: absolute;
-    inset: 0;
-    margin-top: 5rem;
-    margin-left: 5rem;
+    top: 5rem;
+    left: 50%;
+    translate: -50% 0;
+    width: 80%;
+    height: calc(100% - 5rem);
     border-radius: 1rem;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
@@ -318,10 +375,6 @@ const chartImage =
     .hero-grid {
       grid-template-columns: 1fr 1fr;
       gap: 3rem;
-    }
-
-    .hero-visual {
-      display: block;
     }
   }
 </style>
