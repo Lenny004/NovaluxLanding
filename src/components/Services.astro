@@ -7,8 +7,7 @@ const services = [
     badgeColor: 'services-badge--navy',
     overlay: 'services-overlay--navy',
     icon: 'electric_bolt',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBFaYfPHjL2fgY9ItDutkSXKh0vBo279_8EJ_Z2yHDt91nhICYsCRCHl51RZQfcq8Z2GJeaYQUr09Pgw5I8v6NXSicd0326MeoL1Cif5aNpwIGW1eT5TL4Zdqj5EJxGtuoRiJUVeXgcKS1KN9kfgcZRhwCn9D2r-q4JhSS3BQl3y8wFqzcM4WM-eK8VNKwo9xpejjhhR0A6Wbu4sSDw3UwVsqq0YcA7xPjfqRXeyMLoTnxtLTbLPMZz',
+    image: '/light.png',
   },
   {
     title: 'Gas',
@@ -17,8 +16,7 @@ const services = [
     badgeColor: 'services-badge--blue',
     overlay: 'services-overlay--blue',
     icon: 'mode_heat',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCjVc9nDbYiNUZDZRODNXWkCePPUa8dtR3pPnlTSOvb2ndohIY3DTfAuAnShzmHRd0jf60l8OUXfySvJwiDMIvvKGzgV67CnV32Ulbdnwqa03nr408W0WrOl_kXd-84jyrelT5BJ_4kPCxhK5y4YV7lzjzja4-lQWbVVqHEDg6UKZN3ZdG43gTab4Zll4OOB-Fpmb9XkuOln8AhF5iTzaJODWs0cJK9a9YkuOScEV785KfXwMYfCU2F',
+    image: '/gas.png',
   },
   {
     title: 'Fibra',
@@ -27,8 +25,7 @@ const services = [
     badgeColor: 'services-badge--orange',
     overlay: 'services-overlay--orange',
     icon: 'router',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuA0NLyuqSZ4HAiOIMFRqQKQfGP3kHlBkAnPj00dobZwStFm0NsgNSLcjPXQcIwZEi6ydqxYAH9INljHGTqCqEFBnyJ6DfsZ_-w6LyEw0bcRuSETEZgM0Lsm896Kf7E-a5H1xahuUq1ipe3uqeUahdESsaxxBp-bKQzmTP8iQt_DMVq5VUvR2J6hpumkoc-wLCwwCrOrO2h3c-84jS0S_qwLfqcyQMvfRJ_zaTDWbCF2Vg7L4TPcKt2S',
+    image: '/fiber.png',
   },
   {
     title: 'Móvil',
@@ -37,8 +34,7 @@ const services = [
     badgeColor: 'services-badge--navy',
     overlay: 'services-overlay--navy',
     icon: 'smartphone',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBsD_1I_pT_Dpvvyb-8Gv5EpiCBMnnecCJa9Hjoo25OQvZdA0dJC6kBS_oJ-Oao8VETqq_fgnOKCncer6CVF5DtukEEwbMykzu4yZ89HRoezaXstEjHJSSsIqOFOLlgP5TcTe-O-bPMEgdM_b8xsM4BQgd5-ZxJoe5IsaMp2Klp41QKGttzcsiU3D2oloK0lq7rlKQ-TMMa-SdA0TEBAus3V2p0NiCVHAISgmXUYaHPRM_2tsEAiG9-',
+    image: '/mobile.png',
   },
 ];
 ---
@@ -77,7 +73,7 @@ const services = [
   }
 
   .services-header {
-    max-width: 36rem;
+    width: 100%;
     margin-bottom: 4rem;
   }
 
@@ -196,7 +192,7 @@ const services = [
   }
 
   .services-desc {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--color-bg);
   }
 
   @media (min-width: 40rem) {
