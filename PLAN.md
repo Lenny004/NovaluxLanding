@@ -24,7 +24,6 @@ Definidas en `src/styles/global.css`:
   --color-gold:   #FFC107;
   --color-cream:  #FFF4E2;
   --color-bg:     #F6F8FB;
-  --color-text:   #243447;
   --color-muted:  #64748B;
   --color-border: #E5EAF0;
 }

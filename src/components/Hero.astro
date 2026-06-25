@@ -1,0 +1,327 @@
+---
+const metrics = [
+  { value: '+40', label: 'Compañías homologadas' },
+  { value: '+300', label: 'Colaboradores activos' },
+  { value: '24-48h', label: 'Alta rápida' },
+];
+
+const heroImage =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuDNiLTS8_uU3iHvqQFUIpbTG9Xj71ft4DXEDKjRKDkBRRZfmhbbpGhmcgkcu0yk9aM5dlVX9zVHu-brxkE7j596NIJ8gULUNYWWgfdgtgYClERLOIjWFCoswBwxmRTy_dFP6_3c5ViuZhqtBP0Hlsesrg6sPBHUTW5NkHSHoebLKIfslmJxaYSqoT4LfTJ3DMZtNfedpGxTH9UuSeGskC0fKtOzPP2L1CxNHz82cQGnfI_oid-SpDyz';
+
+const chartImage =
+  'https://lh3.googleusercontent.com/aida-public/AB6AXuBbPwyArLiXG0ywORvkMMGRRSMUwfaPr7isSBCsnKxDcUJJYh_jxFxcy_FfMkZ6D-W7lqYXxqtpd7PYZ2xuKcZlEMS7w9TOpFwY_e-0l6sIpUTZYqZGh_Mtbn87jIa0mLEjl5Et45LCcxrOZxd3XR14hs-w__HK8YE9i64Kn9X-TeP97GmpQOV0WeWEJFiiJgjxJcE-chwZ79Nq7Q6Ssyk0KjMNTfJL1cKb2vqknTYIb7CA80GmKQ1l';
+---
+
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-bg-blob hero-bg-blob--top"></div>
+    <div class="hero-bg-blob hero-bg-blob--bottom"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <h1 class="display-lg">
+          Convierte tu red de clientes en una <span class="text-gradient">nueva fuente de ingresos</span>
+        </h1>
+
+        <p class="hero-lead">
+          Si eres autónomo o pyme y quieres una nueva línea de negocio, en NOVALUX te damos las mejores compañías del mercado, las comisiones más altas y la tramitación más rápida y sencilla del sector. Tú vendes, nosotros lo gestionamos.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-primary">
+            Quiero ser colaborador
+            <span class="material-symbols-outlined hero-cta-icon" aria-hidden="true">arrow_forward</span>
+          </a>
+          <a href="#comisiones" class="btn-secondary">Ver cómo funciona</a>
+        </div>
+
+        <div class="hero-metrics">
+          {metrics.map((metric) => (
+            <div class="hero-metric">
+              <div class="headline-md hero-metric-value">{metric.value}</div>
+              <div class="label-sm hero-metric-label">{metric.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card hero-card--energy glass-panel">
+          <div class="hero-card-icon hero-card-icon--light">
+            <span class="material-symbols-outlined">bolt</span>
+          </div>
+          <h3 class="label-md hero-card-title">Energía &amp; Gas</h3>
+          <p class="label-sm hero-card-text">Comisiones líderes en el sector.</p>
+        </div>
+
+        <div class="hero-card hero-card--income">
+          <div class="hero-income-header">
+            <div class="hero-card-icon hero-card-icon--dark">
+              <span class="material-symbols-outlined">trending_up</span>
+            </div>
+            <div>
+              <div class="label-sm hero-income-label">Ingresos Recurrentes</div>
+              <div class="headline-md hero-income-value">€1,240</div>
+            </div>
+          </div>
+          <div
+            class="hero-chart"
+            style={`background-image: url('${chartImage}')`}
+          ></div>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img
+            class="hero-image"
+            src={heroImage}
+            alt=""
+            loading="eager"
+          />
+          <div class="hero-image-overlay"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: 6rem 8rem;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-bg-blob {
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(4rem);
+    opacity: 0.5;
+  }
+
+  .hero-bg-blob--top {
+    top: 0;
+    right: 0;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(to bottom left, rgba(14, 42, 77, 0.12), transparent);
+    border-bottom-left-radius: 9999px;
+  }
+
+  .hero-bg-blob--bottom {
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 50%;
+    background: linear-gradient(to top right, rgba(30, 95, 140, 0.1), transparent);
+    border-top-right-radius: 9999px;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .hero-lead {
+    max-width: none;
+    color: var(--color-muted);
+    font-size: var(--size-m);
+    line-height: 1.6;
+  }
+
+  @media (min-width: 48rem) {
+    .hero-lead {
+      max-width: 36rem;
+      font-size: var(--size-lg);
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 0.5rem;
+  }
+
+  .hero-cta-icon {
+    font-family: 'Material Symbols Outlined';
+    font-size: var(--size-m);
+  }
+
+  .hero-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .hero-metric-value {
+    color: var(--color-navy);
+    font-weight: 700;
+  }
+
+  .hero-metric-label {
+    color: var(--color-muted);
+  }
+
+  .hero-visual {
+    display: none;
+    position: relative;
+    height: 37.5rem;
+  }
+
+  .hero-card {
+    position: absolute;
+    border-radius: var(--radius-xl);
+    z-index: 20;
+  }
+
+  .hero-card--energy {
+    top: 2.5rem;
+    right: 2.5rem;
+    width: 16rem;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    animation: hero-float 4s ease-in-out infinite;
+  }
+
+  .hero-card--income {
+    bottom: 5rem;
+    left: 2.5rem;
+    width: 18rem;
+    padding: 1.5rem;
+    background: var(--color-navy);
+    box-shadow: var(--shadow-lift);
+    z-index: 30;
+    animation: hero-float 5s ease-in-out infinite;
+  }
+
+  .hero-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+  }
+
+  .hero-card-icon--light {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    background: var(--color-cream);
+    color: var(--color-navy);
+  }
+
+  .hero-card-icon--dark {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  .hero-card-icon .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: var(--size-lg);
+  }
+
+  .hero-card-title {
+    color: var(--color-navy);
+    margin-bottom: 0.25rem;
+  }
+
+  .hero-card-text {
+    color: var(--color-muted);
+  }
+
+  .hero-income-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-income-label {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-income-value {
+    color: #ffffff;
+    font-weight: 700;
+  }
+
+  .hero-chart {
+    height: 4rem;
+    width: 100%;
+    opacity: 0.5;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .hero-image-wrap {
+    position: absolute;
+    inset: 0;
+    margin-top: 5rem;
+    margin-left: 5rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(14, 42, 77, 0.8), transparent);
+    mix-blend-mode: multiply;
+  }
+
+  @keyframes hero-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-0.625rem);
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .hero-actions {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .hero-visual {
+      display: block;
+    }
+  }
+</style>
