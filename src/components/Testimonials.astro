@@ -41,8 +41,7 @@ const testimonials = [
 
     <div class="testimonials-grid">
       {testimonials.map((item, i) => (
-        <article class="testimonials-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
-          <span class="material-symbols-outlined testimonials-quote" aria-hidden="true">format_quote</span>
+        <article class="testimonials-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
           <blockquote class="body-md text-muted testimonials-text">"{item.quote}"</blockquote>
           <footer class="testimonials-author">
             <div class={`testimonials-avatar ${item.avatarBg} ${item.avatarColor}`}>
@@ -73,14 +72,6 @@ const testimonials = [
     border-radius: var(--radius-xl);
     background: #ffffff;
     border: 1px solid rgba(229, 234, 240, 0.5);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .testimonials-quote {
-    font-family: 'Material Symbols Outlined';
-    font-size: var(--size-icon);
-    color: var(--color-orange);
-    margin-bottom: 1rem;
   }
 
   .testimonials-text {
