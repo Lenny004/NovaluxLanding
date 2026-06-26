@@ -41,7 +41,7 @@ const services = [
 
 <section class="services section" id="servicios">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header" data-reveal>
       <h2 class="display-xl">Una oferta integral para tus clientes</h2>
       <p class="body-lg text-muted">
         No dejes escapar ninguna oportunidad. Cubre todas las necesidades de tus clientes con un solo proveedor.
@@ -49,8 +49,8 @@ const services = [
     </header>
 
     <div class="services-grid">
-      {services.map((service) => (
-        <article class="services-card">
+      {services.map((service, i) => (
+        <article class="services-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
           <img class="services-image" src={service.image} alt={service.title} loading="lazy" />
           <div class={`services-overlay ${service.overlay}`}></div>
           <span class={`label-xs services-badge ${service.badgeColor}`}>{service.badge}</span>

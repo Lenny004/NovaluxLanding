@@ -29,7 +29,7 @@ const phases = [
 
   <div class="container commissions-inner">
     <div class="commissions-grid">
-      <div class="commissions-intro">
+      <div class="commissions-intro" data-reveal>
         <h2 class="display-xl commissions-title">Comisiones pensadas para que crezcas</h2>
         <p class="body-lg text-inverse commissions-lead">
           Nuestro modelo de retribución está diseñado para premiar tanto la captación como la fidelización de tu cartera.
@@ -41,8 +41,8 @@ const phases = [
 
       <div class="commissions-timeline">
         <div class="commissions-line" aria-hidden="true"></div>
-        {phases.map((item) => (
-          <div class="commissions-item">
+        {phases.map((item, i) => (
+          <div class="commissions-item" data-reveal style={`--reveal-delay: ${i * 120}ms`}>
             <div class={`commissions-marker ${item.accent}`} aria-hidden="true">
               <span class="commissions-dot"></span>
             </div>

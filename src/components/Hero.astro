@@ -20,7 +20,7 @@ const chartImage =
 
   <div class="container">
     <div class="hero-grid">
-      <div class="hero-content">
+      <div class="hero-content" data-reveal style="--reveal-delay: 0ms">
         <h1 class="display-xl">
           Convierte tu red de clientes en una <span class="text-gradient">nueva fuente de ingresos</span>
         </h1>
@@ -38,8 +38,8 @@ const chartImage =
         </div>
 
         <div class="hero-metrics">
-          {metrics.map((metric) => (
-            <div class="hero-metric">
+          {metrics.map((metric, i) => (
+            <div class="hero-metric" data-reveal style={`--reveal-delay: ${(i + 1) * 100}ms`}>
               <div class="headline-lg hero-metric-value" data-count={metric.value}>
                 {metric.value}
               </div>
@@ -49,7 +49,7 @@ const chartImage =
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual" aria-hidden="true" data-reveal style="--reveal-delay: 150ms">
         <div class="hero-card hero-card--energy glass-panel">
           <div class="hero-card-icon hero-card-icon--light">
             <span class="material-symbols-outlined">bolt</span>

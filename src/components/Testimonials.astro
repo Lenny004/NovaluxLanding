@@ -32,7 +32,7 @@ const testimonials = [
 
 <section class="testimonials section" id="testimonios">
   <div class="container">
-    <header class="section-header">
+    <header class="section-header" data-reveal>
       <h2 class="display-xl">Lo que dicen nuestros colaboradores</h2>
       <p class="body-lg text-muted">
         Pymes y autónomos de toda España que ya han transformado su negocio con NOVALUX.
@@ -40,8 +40,8 @@ const testimonials = [
     </header>
 
     <div class="testimonials-grid">
-      {testimonials.map((item) => (
-        <article class="testimonials-card">
+      {testimonials.map((item, i) => (
+        <article class="testimonials-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
           <span class="material-symbols-outlined testimonials-quote" aria-hidden="true">format_quote</span>
           <blockquote class="body-md text-muted testimonials-text">"{item.quote}"</blockquote>
           <footer class="testimonials-author">
