@@ -1,5 +1,11 @@
 ---
 import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'NOVALUX' } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,7 +16,7 @@ import '../styles/global.css';
     <link rel="icon" type="image/png" href="/logo.png" />
     <link rel="apple-touch-icon" href="/logo.png" />
     <meta name="generator" content={Astro.generator}/>
-    <title>NOVALUX</title>
+    <title>{title}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

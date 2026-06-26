@@ -83,7 +83,7 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
             </button>
 
             <p class="label-xs text-muted contact-disclaimer">
-              Al enviar aceptas nuestra política de privacidad.
+              Al enviar aceptas nuestra <a class="label-xs" href="/privacidad">política de privacidad</a>.
             </p>
           </form>
         </div>
@@ -213,6 +213,15 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
 
   .contact-disclaimer {
     text-align: center;
+  }
+
+  .contact-disclaimer a {
+    color: var(--color-blue);
+    text-decoration: underline;
+  }
+
+  .contact-disclaimer a:hover {
+    color: var(--color-navy);
   }
 
   @media (min-width: 48rem) {
