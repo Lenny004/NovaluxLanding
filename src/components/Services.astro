@@ -50,7 +50,7 @@ const services = [
 
     <div class="services-grid">
       {services.map((service, i) => (
-        <article class="services-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+        <article class="services-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
           <img class="services-image" src={service.image} alt={service.title} loading="lazy" />
           <div class={`services-overlay ${service.overlay}`}></div>
           <span class={`label-xs services-badge ${service.badgeColor}`}>{service.badge}</span>
@@ -83,12 +83,6 @@ const services = [
     height: 24rem;
     border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-soft);
-    transition: box-shadow 0.3s ease;
-  }
-
-  .services-card:hover {
-    box-shadow: var(--shadow-lift);
   }
 
   .services-image {

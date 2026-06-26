@@ -196,6 +196,22 @@ a {
   }
 }
 
+/* ── Card hover lift ─────────────────────────────────────────────── */
+
+.card-lift {
+  box-shadow: var(--shadow-soft);
+  transition:
+    box-shadow 0.3s ease,
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-lift:hover {
+    box-shadow: var(--shadow-lift);
+    transform: scale(1.02);
+  }
+}
+
 .glass-panel {
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(0.625rem);

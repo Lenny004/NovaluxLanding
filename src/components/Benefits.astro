@@ -32,7 +32,7 @@ const benefits = [
 
     <div class="benefits-grid">
       {benefits.map((item, i) => (
-        <article class="benefits-card" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+        <article class="benefits-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
           <div class={`benefits-icon ${item.iconBg}`}>
             <span class="material-symbols-outlined">{item.icon}</span>
           </div>
@@ -61,12 +61,6 @@ const benefits = [
     border-radius: var(--radius-xl);
     background: #ffffff;
     border: 1px solid rgba(229, 234, 240, 0.5);
-    box-shadow: var(--shadow-soft);
-    transition: box-shadow 0.3s ease;
-  }
-
-  .benefits-card:hover {
-    box-shadow: var(--shadow-lift);
   }
 
   .benefits-icon {
