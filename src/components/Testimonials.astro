@@ -32,25 +32,25 @@ const testimonials = [
 
 <section class="testimonials section" id="testimonios">
   <div class="container">
-    <div class="testimonials-header">
-      <h2 class="headline-lg">Lo que dicen nuestros colaboradores</h2>
-      <p class="testimonials-lead">
+    <header class="section-header">
+      <h2 class="display-xl">Lo que dicen nuestros colaboradores</h2>
+      <p class="body-lg text-muted">
         Pymes y autónomos de toda España que ya han transformado su negocio con NOVALUX.
       </p>
-    </div>
+    </header>
 
     <div class="testimonials-grid">
       {testimonials.map((item) => (
         <article class="testimonials-card">
           <span class="material-symbols-outlined testimonials-quote" aria-hidden="true">format_quote</span>
-          <blockquote class="body-md testimonials-text">"{item.quote}"</blockquote>
+          <blockquote class="body-md text-muted testimonials-text">"{item.quote}"</blockquote>
           <footer class="testimonials-author">
             <div class={`testimonials-avatar ${item.avatarBg} ${item.avatarColor}`}>
               {item.initial}
             </div>
             <div>
-              <div class="label-md testimonials-name">{item.name}</div>
-              <div class="label-sm testimonials-role">{item.role}</div>
+              <div class="label-s testimonials-name">{item.name}</div>
+              <div class="label-xs text-muted">{item.role}</div>
             </div>
           </footer>
         </article>
@@ -60,24 +60,6 @@ const testimonials = [
 </section>
 
 <style>
-  .testimonials-header {
-    max-width: 42rem;
-    margin-inline: auto;
-    margin-bottom: 4rem;
-    text-align: center;
-  }
-
-  .testimonials-header h2 {
-    margin-bottom: 1rem;
-    color: var(--color-navy);
-  }
-
-  .testimonials-lead {
-    color: var(--color-muted);
-    font-size: var(--size-lg);
-    line-height: 1.6;
-  }
-
   .testimonials-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -96,7 +78,7 @@ const testimonials = [
 
   .testimonials-quote {
     font-family: 'Material Symbols Outlined';
-    font-size: 1.875rem;
+    font-size: var(--size-icon);
     color: var(--color-orange);
     margin-bottom: 1rem;
   }
@@ -104,7 +86,6 @@ const testimonials = [
   .testimonials-text {
     flex: 1;
     margin-bottom: 2rem;
-    color: var(--color-muted);
     font-style: italic;
   }
 
@@ -150,10 +131,6 @@ const testimonials = [
 
   .testimonials-name {
     color: var(--color-navy);
-  }
-
-  .testimonials-role {
-    color: var(--color-muted);
   }
 
   @media (min-width: 48rem) {

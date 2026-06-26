@@ -16,7 +16,12 @@
   --size-s: 1.1rem;
   --size-m: 1.2rem;
   --size-lg: 1.4rem;
+  --size-headline: calc(var(--size-lg) * 1.2);
   --size-xl: 3rem;
+
+  /* Iconos Material Symbols */
+  --size-icon: 1.875rem;
+  --size-icon-nav: 1.75rem;
 
   --brand-logo: 6rem;
 
@@ -84,22 +89,15 @@ a {
 
 /* ── Tipografía ──────────────────────────────────────────────────── */
 
-.display-lg {
+.display-xl {
   font-size: var(--size-xl);
-  line-height: 1.1;
+  line-height: 1.2;
   letter-spacing: -0.02em;
   font-weight: 800;
 }
 
 .headline-lg {
-  font-size: calc(var(--size-xl) * 2 / 3);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  font-weight: 700;
-}
-
-.headline-md {
-  font-size: calc(var(--size-lg) * 1.2);
+  font-size: var(--size-headline);
   line-height: 1.3;
   font-weight: 600;
 }
@@ -110,26 +108,40 @@ a {
   font-weight: 400;
 }
 
-.label-md {
+.body-lg {
+  font-size: var(--size-lg);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+.text-inverse {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.text-inverse-soft {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.label-s {
   font-size: var(--size-s);
   line-height: 1.4;
   letter-spacing: 0.05em;
   font-weight: 600;
 }
 
-.label-sm {
+.label-xs {
   font-size: var(--size-xs);
   line-height: 1.4;
   font-weight: 500;
 }
 
 @media (max-width: 47.9375rem) {
-  .display-lg {
+  .display-xl {
     font-size: calc(var(--size-xl) * 0.75);
-  }
-
-  .headline-lg {
-    font-size: calc(var(--size-xl) * 7 / 12);
   }
 }
 
@@ -144,6 +156,18 @@ a {
 
 .section {
   padding-block: 6rem;
+}
+
+.section-header {
+  max-width: 42rem;
+  margin-inline: auto;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-header h2 {
+  margin-bottom: 1rem;
+  color: var(--color-navy);
 }
 
 .glass-panel {

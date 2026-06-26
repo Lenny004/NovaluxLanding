@@ -5,21 +5,21 @@ const phases = [
     title: 'Activación',
     text: 'Cobra un upfront competitivo por cada nuevo contrato dado de alta en la plataforma, abonado rápidamente.',
     accent: 'commissions-marker--orange',
-    labelColor: 'commissions-label--orange',
+    phaseColor: 'commissions-phase--orange',
   },
   {
     phase: 'Fase 2',
     title: 'Recurrencia',
     text: 'Construye una cartera que te genere ingresos mes a mes. Tu esfuerzo de hoy rinde frutos a largo plazo.',
     accent: 'commissions-marker--blue',
-    labelColor: 'commissions-label--blue',
+    phaseColor: 'commissions-phase--blue',
   },
   {
     phase: 'Fase 3',
     title: 'Sin límite de ingresos',
     text: 'No hay topes ni barreras. Cuanto más crezcas, mejores condiciones y bonus por volumen podrás alcanzar.',
     accent: 'commissions-marker--gold',
-    labelColor: 'commissions-label--gold',
+    phaseColor: 'commissions-phase--gold',
   },
 ];
 ---
@@ -30,8 +30,8 @@ const phases = [
   <div class="container commissions-inner">
     <div class="commissions-grid">
       <div class="commissions-intro">
-        <h2 class="display-lg commissions-title">Comisiones pensadas para que crezcas</h2>
-        <p class="commissions-lead">
+        <h2 class="display-xl commissions-title">Comisiones pensadas para que crezcas</h2>
+        <p class="body-lg text-inverse commissions-lead">
           Nuestro modelo de retribución está diseñado para premiar tanto la captación como la fidelización de tu cartera.
         </p>
         <a href="#contacto" class="btn-primary commissions-cta">
@@ -47,9 +47,9 @@ const phases = [
               <span class="commissions-dot"></span>
             </div>
             <div class="commissions-item-content">
-              <span class={`label-md commissions-phase ${item.labelColor}`}>{item.phase}</span>
-              <h3 class="headline-md commissions-item-title">{item.title}</h3>
-              <p class="body-md commissions-item-text">{item.text}</p>
+              <span class={`label-s commissions-phase ${item.phaseColor}`}>{item.phase}</span>
+              <h3 class="headline-lg commissions-item-title">{item.title}</h3>
+              <p class="body-md text-inverse-soft commissions-item-text">{item.text}</p>
             </div>
           </div>
         ))}
@@ -64,6 +64,7 @@ const phases = [
     overflow: hidden;
     background: var(--color-navy);
     color: #ffffff;
+    border-radius: var(--radius-2xl);
   }
 
   .commissions-glow {
@@ -98,9 +99,6 @@ const phases = [
 
   .commissions-lead {
     margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: var(--size-lg);
-    line-height: 1.6;
   }
 
   .commissions-cta {
@@ -187,15 +185,15 @@ const phases = [
     letter-spacing: 0.08em;
   }
 
-  .commissions-label--orange {
+  .commissions-phase--orange {
     color: var(--color-orange);
   }
 
-  .commissions-label--blue {
+  .commissions-phase--blue {
     color: var(--color-blue);
   }
 
-  .commissions-label--gold {
+  .commissions-phase--gold {
     color: var(--color-gold);
   }
 
@@ -205,7 +203,6 @@ const phases = [
 
   .commissions-item-text {
     max-width: 32rem;
-    color: rgba(255, 255, 255, 0.7);
   }
 
   @media (min-width: 40rem) {

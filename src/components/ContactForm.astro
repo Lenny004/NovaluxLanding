@@ -21,8 +21,8 @@ const businessTypes = [
 
       <div class="contact-grid">
         <div class="contact-intro">
-          <h2 class="display-lg contact-title">Únete a la red líder hoy</h2>
-          <p class="contact-lead">
+          <h2 class="display-xl contact-title">Únete a la red líder hoy</h2>
+          <p class="body-lg text-inverse contact-lead">
             Déjanos tus datos y un asesor se pondrá en contacto contigo para explicarte el programa de colaboración y darte de alta.
           </p>
 
@@ -39,7 +39,7 @@ const businessTypes = [
         <div class="contact-form-wrap">
           <form class="contact-form" action="" method="post">
             <div class="contact-field">
-              <label class="label-md contact-label" for="contact-name">Nombre completo</label>
+              <label class="label-s contact-label" for="contact-name">Nombre completo</label>
               <input
                 class="contact-input"
                 id="contact-name"
@@ -52,7 +52,7 @@ const businessTypes = [
 
             <div class="contact-row">
               <div class="contact-field">
-                <label class="label-md contact-label" for="contact-phone">Teléfono</label>
+                <label class="label-s contact-label" for="contact-phone">Teléfono</label>
                 <input
                   class="contact-input"
                   id="contact-phone"
@@ -63,7 +63,7 @@ const businessTypes = [
                 />
               </div>
               <div class="contact-field">
-                <label class="label-md contact-label" for="contact-email">Email</label>
+                <label class="label-s contact-label" for="contact-email">Email</label>
                 <input
                   class="contact-input"
                   id="contact-email"
@@ -76,7 +76,7 @@ const businessTypes = [
             </div>
 
             <div class="contact-field">
-              <label class="label-md contact-label" for="contact-business">Tipo de negocio</label>
+              <label class="label-s contact-label" for="contact-business">Tipo de negocio</label>
               <select class="contact-input" id="contact-business" name="business" required>
                 {businessTypes.map((type) => (
                   <option value={type}>{type}</option>
@@ -88,7 +88,7 @@ const businessTypes = [
               Solicitar información
             </button>
 
-            <p class="label-sm contact-disclaimer">
+            <p class="label-xs text-muted contact-disclaimer">
               Al enviar aceptas nuestra política de privacidad.
             </p>
           </form>
@@ -100,7 +100,11 @@ const businessTypes = [
 
 <style>
   .contact {
+    position: relative;
+    z-index: 2;
     background: var(--color-bg);
+    border-radius: var(--radius-2xl);
+    margin-bottom: -5rem;
   }
 
   .contact-panel {
@@ -108,6 +112,7 @@ const businessTypes = [
     overflow: hidden;
     padding: 2rem;
     border-radius: var(--radius-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     background: var(--color-navy);
     box-shadow: var(--shadow-lift);
   }
@@ -139,9 +144,6 @@ const businessTypes = [
 
   .contact-lead {
     margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: var(--size-lg);
-    line-height: 1.6;
   }
 
   .contact-perks {
@@ -217,7 +219,6 @@ const businessTypes = [
 
   .contact-disclaimer {
     text-align: center;
-    color: var(--color-muted);
   }
 
   @media (min-width: 48rem) {

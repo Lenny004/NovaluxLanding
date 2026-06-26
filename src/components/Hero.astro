@@ -21,11 +21,11 @@ const chartImage =
   <div class="container">
     <div class="hero-grid">
       <div class="hero-content">
-        <h1 class="display-lg">
+        <h1 class="display-xl">
           Convierte tu red de clientes en una <span class="text-gradient">nueva fuente de ingresos</span>
         </h1>
 
-        <p class="hero-lead">
+        <p class="body-lg text-muted hero-lead">
           Si eres autónomo o pyme y quieres una nueva línea de negocio, en NOVALUX te damos las mejores compañías del mercado, las comisiones más altas y la tramitación más rápida y sencilla del sector. Tú vendes, nosotros lo gestionamos.
         </p>
 
@@ -40,10 +40,10 @@ const chartImage =
         <div class="hero-metrics">
           {metrics.map((metric) => (
             <div class="hero-metric">
-              <div class="headline-md hero-metric-value" data-count={metric.value}>
+              <div class="headline-lg hero-metric-value" data-count={metric.value}>
                 {metric.value}
               </div>
-              <div class="label-sm hero-metric-label">{metric.label}</div>
+              <div class="label-xs text-muted hero-metric-label">{metric.label}</div>
             </div>
           ))}
         </div>
@@ -54,8 +54,8 @@ const chartImage =
           <div class="hero-card-icon hero-card-icon--light">
             <span class="material-symbols-outlined">bolt</span>
           </div>
-          <h3 class="label-md hero-card-title">Energía &amp; Gas</h3>
-          <p class="label-sm hero-card-text">Comisiones líderes en el sector.</p>
+          <h3 class="label-s hero-card-title">Energía &amp; Gas</h3>
+          <p class="label-xs text-muted">Comisiones líderes en el sector.</p>
         </div>
 
         <div class="hero-card hero-card--income">
@@ -64,8 +64,8 @@ const chartImage =
               <span class="material-symbols-outlined">trending_up</span>
             </div>
             <div>
-              <div class="label-sm hero-income-label">Ingresos Recurrentes</div>
-              <div class="headline-md hero-income-value">€1,240</div>
+              <div class="label-xs hero-income-label">Ingresos Recurrentes</div>
+              <div class="headline-lg hero-income-value">€1,240</div>
             </div>
           </div>
           <div
@@ -184,15 +184,11 @@ const chartImage =
 
   .hero-lead {
     max-width: none;
-    color: var(--color-muted);
-    font-size: var(--size-m);
-    line-height: 1.6;
   }
 
   @media (min-width: 48rem) {
     .hero-lead {
       max-width: 36rem;
-      font-size: var(--size-lg);
     }
   }
 
@@ -228,10 +224,6 @@ const chartImage =
     color: var(--color-navy);
     font-weight: 700;
     font-variant-numeric: tabular-nums;
-  }
-
-  .hero-metric-label {
-    color: var(--color-muted);
   }
 
   .hero-visual {
@@ -298,10 +290,6 @@ const chartImage =
   .hero-card-title {
     color: var(--color-navy);
     margin-bottom: 0.25rem;
-  }
-
-  .hero-card-text {
-    color: var(--color-muted);
   }
 
   .hero-income-header {
