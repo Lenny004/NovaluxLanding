@@ -154,6 +154,18 @@ a {
   padding-inline: var(--gutter);
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.brand img {
+  width: var(--brand-logo);
+  height: auto;
+}
+
 .section {
   padding-block: 6rem;
 }

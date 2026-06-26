@@ -9,9 +9,9 @@ const legalLinks = [
 
 <footer class="site-footer">
   <div class="container site-footer-inner" data-reveal="fade">
-    <div class="site-footer-brand">
-      <span class="headline-lg">NOVALUX Energy Partners</span>
-    </div>
+    <a href="#" class="brand">
+      <img src="/logo.png" alt="NOVALUX Energy Partners" />
+    </a>
 
     <nav class="site-footer-nav" aria-label="Legal">
       {legalLinks.map((link) => (
@@ -41,11 +41,6 @@ const legalLinks = [
     gap: 2rem;
     padding-block: 3rem;
     text-align: center;
-  }
-
-  .site-footer-brand span {
-    color: #ffffff;
-    font-weight: 700;
   }
 
   .site-footer-nav {
