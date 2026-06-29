@@ -5,7 +5,12 @@ const perks = [
   'Soporte dedicado',
 ];
 
-const businessTypes = ['Pyme/empresa', 'Individuo'];
+const clientTypes = [
+  { label: 'Autónomo', value: 'autonomo' },
+  { label: 'Empresa', value: 'empresa' },
+  { label: 'Particular', value: 'particular' },
+];
+
 const crmEndpoint = import.meta.env.PUBLIC_CRM_LANDING_LEADS_ENDPOINT ?? 'https://TU_DOMINIO_CRM/PTR-Sales/api/public/api_landing_leads.php?action=create';
 const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
 ---
@@ -36,9 +41,11 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
           <form
             class="contact-form"
             method="post"
+            enctype="multipart/form-data"
             data-contact-form
             data-endpoint={crmEndpoint}
             data-api-key={crmApiKey}
+            data-source="novalux"
           >
             <div class="contact-field">
               <label class="label-s contact-label" for="contact-name">Nombre completo</label>
@@ -78,12 +85,50 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
             </div>
 
             <div class="contact-field">
-              <label class="label-s contact-label" for="contact-business">Tipo de negocio</label>
-              <select class="contact-input" id="contact-business" name="business" required>
-                {businessTypes.map((type) => (
-                  <option value={type}>{type}</option>
+              <label class="label-s contact-label" for="contact-client-type">Tipo de cliente</label>
+              <select class="contact-input" id="contact-client-type" name="client_type" required>
+                <option value="" disabled selected>Selecciona una opción</option>
+                {clientTypes.map((type) => (
+                  <option value={type.value}>{type.label}</option>
                 ))}
               </select>
+            </div>
+
+            <div class="contact-field">
+              <label class="label-s contact-label" for="contact-consumption">Consumo aproximado</label>
+              <input
+                class="contact-input"
+                id="contact-consumption"
+                name="approximate_consumption"
+                type="text"
+                placeholder="Ej. 150€/mes o 3.500 kWh/año"
+              />
+            </div>
+
+            <fieldset class="contact-field contact-fieldset">
+              <legend class="label-s contact-label">Servicios de interés</legend>
+              <div class="contact-checks">
+                <label class="contact-check">
+                  <input type="checkbox" name="service_luz" value="1" />
+                  <span>Luz</span>
+                </label>
+                <label class="contact-check">
+                  <input type="checkbox" name="service_gas" value="1" />
+                  <span>Gas</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="contact-field">
+              <label class="label-s contact-label" for="contact-invoice">Subir factura</label>
+              <input
+                class="contact-input contact-file"
+                id="contact-invoice"
+                name="invoice"
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+              />
+              <p class="label-xs text-muted contact-file-hint">PDF, JPG o PNG. Máximo 10 MB.</p>
             </div>
 
             <button class="btn-primary contact-submit" type="submit">
@@ -196,6 +241,32 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
     gap: 0.5rem;
   }
 
+  .contact-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .contact-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .contact-check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-navy);
+    cursor: pointer;
+  }
+
+  .contact-check input {
+    width: 1rem;
+    height: 1rem;
+    accent-color: var(--color-navy);
+  }
+
   .contact-label {
     color: var(--color-navy);
   }
@@ -213,6 +284,16 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
   .contact-input:focus {
     outline: none;
     border-color: var(--color-navy);
+  }
+
+  .contact-file {
+    padding: 0.5rem 0;
+    border: none;
+    background: transparent;
+  }
+
+  .contact-file-hint {
+    margin: 0;
   }
 
   .contact-submit {
@@ -275,6 +356,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
   if (form instanceof HTMLFormElement) {
     const status = form.querySelector('[data-form-status]');
     const submit = form.querySelector('button[type="submit"]');
+    const submitLabel = submit instanceof HTMLButtonElement ? submit.textContent : 'Enviar';
 
     const setStatus = (message, type) => {
       if (!(status instanceof HTMLElement)) return;
@@ -287,6 +369,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
 
       const endpoint = form.dataset.endpoint;
       const apiKey = form.dataset.apiKey;
+      const source = form.dataset.source || 'novalux';
 
       if (!endpoint || !apiKey) {
         setStatus('El formulario no está configurado. Inténtalo más tarde.', 'error');
@@ -294,14 +377,23 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
       }
 
       const data = new FormData(form);
-      const business = String(data.get('business') ?? '');
-      const body = {
-        source: 'novalux',
-        full_name: String(data.get('name') ?? '').trim(),
-        phone: String(data.get('phone') ?? '').trim(),
-        email: String(data.get('email') ?? '').trim(),
-        business_type: business === 'Pyme/empresa' ? 'pyme' : 'individuo',
-      };
+      const body = new FormData();
+      body.set('source', source);
+      body.set('full_name', String(data.get('name') ?? '').trim());
+      body.set('phone', String(data.get('phone') ?? '').trim());
+      body.set('email', String(data.get('email') ?? '').trim());
+      body.set('client_type', String(data.get('client_type') ?? '').trim());
+
+      const consumption = String(data.get('approximate_consumption') ?? '').trim();
+      if (consumption) body.set('approximate_consumption', consumption);
+
+      if (data.get('service_luz')) body.set('service_luz', '1');
+      if (data.get('service_gas')) body.set('service_gas', '1');
+
+      const invoice = data.get('invoice');
+      if (invoice instanceof File && invoice.size > 0) {
+        body.set('invoice', invoice);
+      }
 
       if (submit instanceof HTMLButtonElement) {
         submit.disabled = true;
@@ -311,11 +403,8 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
       try {
         const response = await fetch(endpoint, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'X-API-Key': apiKey,
-          },
-          body: JSON.stringify(body),
+          headers: { 'X-API-Key': apiKey },
+          body,
         });
         const result = await response.json().catch(() => null);
 
@@ -330,7 +419,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
       } finally {
         if (submit instanceof HTMLButtonElement) {
           submit.disabled = false;
-          submit.textContent = 'Solicitar información';
+          submit.textContent = submitLabel ?? 'Solicitar información';
         }
       }
     });
