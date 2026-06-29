@@ -195,6 +195,9 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
         <div class="calc-step" data-calc-step="10" hidden>
           <h3 class="calc-step-title display-xl">¿Cómo te llamas?</h3>
           <p class="calc-step-sub body-lg text-muted">Introduce tu nombre completo *</p>
+          <p class="calc-privacy-note body-md">
+            Para enviarte el resultado personalizado, necesitamos tu contacto. Solo guardaremos tus datos en nuestro CRM si aceptas la política de privacidad.
+          </p>
           <input class="calc-input" type="text" name="firstName" placeholder="Nombre" autocomplete="given-name" />
           <input class="calc-input" type="text" name="lastName" placeholder="Introduce tu apellido" autocomplete="family-name" />
           <button type="button" class="calc-continue btn-primary" data-calc-next>Continuar</button>
@@ -207,7 +210,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
           <label class="calc-consent">
             <input type="checkbox" name="privacy" />
             <span class="body-md text-muted">
-              Acepto la <a href="/privacidad">política de privacidad</a> y consiento la cesión de mis datos a empresas colaboradoras para recibir ofertas personalizadas.
+              Acepto que NOVALUX Energy Partners trate mis datos personales y los registre para contactarme con la mejor oferta energética. Puedo retirar mi consentimiento en cualquier momento. <a href="/privacidad">Política de privacidad</a>.
             </span>
           </label>
           <button type="button" class="calc-continue btn-primary" data-calc-finish>Continuar</button>
@@ -280,6 +283,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
   import {
     buildLeadBody,
     calculatorToLeadFields,
+    getSessionToken,
     saveCalculatorData,
     submitLandingLead,
   } from '../lib/landingLead';
@@ -413,6 +417,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
         serviceLuz: fields.serviceLuz,
         serviceGas: fields.serviceGas,
         calculatorData: payload,
+        sessionToken: getSessionToken(),
       });
       await submitLandingLead(endpoint, apiKey, body);
       saveCalculatorData({ ...payload, submittedToCrm: true, submittedAt: new Date().toISOString() });
@@ -689,6 +694,15 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
   .calc-consent a {
     color: var(--color-blue);
     text-decoration: underline;
+  }
+
+  .calc-privacy-note {
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(30, 95, 140, 0.24);
+    border-radius: var(--radius-lg);
+    background: rgba(30, 95, 140, 0.08);
+    color: var(--color-navy);
+    text-align: left;
   }
 
   .calc-nav {

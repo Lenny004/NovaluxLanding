@@ -151,7 +151,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
             <p class="label-s contact-status" data-form-status aria-live="polite"></p>
 
             <p class="label-xs text-muted contact-disclaimer">
-              Al enviar aceptas nuestra <a class="label-xs" href="/privacidad">política de privacidad</a>.
+              Al enviar aceptas nuestra <a class="label-xs" href="/privacidad">política de privacidad</a> y consientes que tus datos se registren en el CRM de gestión comercial para que NOVALUX Energy Partners y empresas colaboradoras te contacten con ofertas personalizadas.
             </p>
           </form>
 
@@ -592,6 +592,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
     calculatorToLeadFields,
     clearCalculatorData,
     getCalculatorData,
+    getSessionToken,
     submitLandingLead,
   } from '../lib/landingLead';
 
@@ -712,6 +713,7 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
         savingsPercent: calcFields?.savingsPercent,
         monthlySaving: calcFields?.monthlySaving,
         calculatorData,
+        sessionToken: getSessionToken(),
         invoice: data.get('invoice') instanceof File && (data.get('invoice') as File).size > 0
           ? (data.get('invoice') as File)
           : undefined,
