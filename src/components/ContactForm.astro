@@ -6,6 +6,8 @@ const perks = [
 ];
 
 const businessTypes = ['Pyme/empresa', 'Individuo'];
+const crmEndpoint = import.meta.env.PUBLIC_CRM_LANDING_LEADS_ENDPOINT ?? 'https://TU_DOMINIO_CRM/PTR-Sales/api/public/api_landing_leads.php?action=create';
+const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
 ---
 
 <section class="contact section" id="contacto">
@@ -31,7 +33,13 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
         </div>
 
         <div class="contact-form-wrap">
-          <form class="contact-form" action="" method="post">
+          <form
+            class="contact-form"
+            method="post"
+            data-contact-form
+            data-endpoint={crmEndpoint}
+            data-api-key={crmApiKey}
+          >
             <div class="contact-field">
               <label class="label-s contact-label" for="contact-name">Nombre completo</label>
               <input
@@ -81,6 +89,8 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
             <button class="btn-primary contact-submit" type="submit">
               Solicitar información
             </button>
+
+            <p class="label-s contact-status" data-form-status aria-live="polite"></p>
 
             <p class="label-xs text-muted contact-disclaimer">
               Al enviar aceptas nuestra <a class="label-xs" href="/privacidad">política de privacidad</a>.
@@ -211,6 +221,24 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
     padding-block: 1rem;
   }
 
+  .contact-status {
+    display: none;
+    margin: 0;
+    text-align: center;
+  }
+
+  .contact-status.is-visible {
+    display: block;
+  }
+
+  .contact-status.is-success {
+    color: #1b7f45;
+  }
+
+  .contact-status.is-error {
+    color: #b42318;
+  }
+
   .contact-disclaimer {
     text-align: center;
   }
@@ -240,3 +268,71 @@ const businessTypes = ['Pyme/empresa', 'Individuo'];
     }
   }
 </style>
+
+<script>
+  const form = document.querySelector('[data-contact-form]');
+
+  if (form instanceof HTMLFormElement) {
+    const status = form.querySelector('[data-form-status]');
+    const submit = form.querySelector('button[type="submit"]');
+
+    const setStatus = (message, type) => {
+      if (!(status instanceof HTMLElement)) return;
+      status.textContent = message;
+      status.className = `label-s contact-status is-visible is-${type}`;
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const endpoint = form.dataset.endpoint;
+      const apiKey = form.dataset.apiKey;
+
+      if (!endpoint || !apiKey) {
+        setStatus('El formulario no está configurado. Inténtalo más tarde.', 'error');
+        return;
+      }
+
+      const data = new FormData(form);
+      const business = String(data.get('business') ?? '');
+      const body = {
+        source: 'novalux',
+        full_name: String(data.get('name') ?? '').trim(),
+        phone: String(data.get('phone') ?? '').trim(),
+        email: String(data.get('email') ?? '').trim(),
+        business_type: business === 'Pyme/empresa' ? 'pyme' : 'individuo',
+      };
+
+      if (submit instanceof HTMLButtonElement) {
+        submit.disabled = true;
+        submit.textContent = 'Enviando...';
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': apiKey,
+          },
+          body: JSON.stringify(body),
+        });
+        const result = await response.json().catch(() => null);
+
+        if (!response.ok || result?.estado !== 1) {
+          throw new Error(result?.exception || result?.message || 'No se pudo enviar el formulario');
+        }
+
+        form.reset();
+        setStatus('Solicitud enviada correctamente. Te contactaremos en breve.', 'success');
+      } catch (error) {
+        setStatus(error instanceof Error ? error.message : 'No se pudo enviar el formulario', 'error');
+      } finally {
+        if (submit instanceof HTMLButtonElement) {
+          submit.disabled = false;
+          submit.textContent = 'Solicitar información';
+        }
+      }
+    });
+  }
+</script>

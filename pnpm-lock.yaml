@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       astro:
-        specifier: ^7.0.2
+        specifier: 7.0.2
         version: 7.0.2(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
 
 packages:
