@@ -150,6 +150,11 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
 
             <p class="label-s contact-status" data-form-status aria-live="polite"></p>
 
+            <div class="contact-calc-badge" data-calc-badge hidden>
+              <span class="material-symbols-outlined" aria-hidden="true">check_circle</span>
+              <span>Basado en tu análisis de ahorro</span>
+            </div>
+
             <p class="label-xs text-muted contact-disclaimer">
               Al enviar aceptas nuestra <a class="label-xs" href="/privacidad">política de privacidad</a> y consientes que tus datos se registren en el CRM de gestión comercial para que NOVALUX Energy Partners y empresas colaboradoras te contacten con ofertas personalizadas.
             </p>
@@ -480,6 +485,24 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
     color: var(--color-navy);
   }
 
+  .contact-calc-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: var(--radius-lg);
+    background: rgba(30, 95, 140, 0.1);
+    border: 1px solid rgba(30, 95, 140, 0.3);
+    color: var(--color-navy);
+    font-size: var(--size-xs);
+    font-weight: 600;
+  }
+
+  .contact-calc-badge .material-symbols-outlined {
+    font-size: 1.1rem;
+    color: var(--color-blue);
+  }
+
   .contact-success {
     display: flex;
     flex-direction: column;
@@ -609,7 +632,10 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
     const filePlaceholder = fileName instanceof HTMLElement ? fileName.textContent : 'o arrastra aquí';
 
     const calcData = getCalculatorData();
+    const calcBadge = form.querySelector('[data-calc-badge]');
     if (calcData) {
+      if (calcBadge instanceof HTMLElement) calcBadge.hidden = false;
+
       const fields = calculatorToLeadFields(calcData);
       const nameInput = form.querySelector<HTMLInputElement>('[name="name"]');
       const phoneInput = form.querySelector<HTMLInputElement>('[name="phone"]');
