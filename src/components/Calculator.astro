@@ -283,8 +283,10 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
   import {
     buildLeadBody,
     calculatorToLeadFields,
+    createCalculatorSession,
     getSessionToken,
     saveCalculatorData,
+    setSessionTokenOverride,
     submitLandingLead,
   } from '../lib/landingLead';
 
@@ -410,6 +412,13 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
 
     if (!endpoint || !apiKey) return;
 
+    const calcSessEndpoint = endpoint.replace('api_landing_leads.php', 'api_calculator_session.php');
+    const sessionData = await createCalculatorSession(calcSessEndpoint, apiKey, source, 'energy', data, result);
+    const sessionToken = sessionData?.session_token || getSessionToken();
+    if (sessionData?.session_token) {
+      setSessionTokenOverride(sessionData.session_token);
+    }
+
     try {
       const fields = calculatorToLeadFields(payload);
       const body = buildLeadBody({
@@ -425,10 +434,10 @@ const crmApiKey = import.meta.env.PUBLIC_NOVALUX_LANDING_API_KEY ?? '';
         serviceLuz: fields.serviceLuz,
         serviceGas: fields.serviceGas,
         calculatorData: payload,
-        sessionToken: getSessionToken(),
+        sessionToken,
       });
       await submitLandingLead(endpoint, apiKey, body);
-      saveCalculatorData({ ...payload, submittedToCrm: true, submittedAt: new Date().toISOString() });
+      saveCalculatorData({ ...payload, sessionToken, submittedToCrm: true, submittedAt: new Date().toISOString() });
     } catch {
       // El usuario ve el resultado aunque falle el envío; contacto puede reenviar los datos.
     }
