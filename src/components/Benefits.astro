@@ -2,19 +2,19 @@
 const benefits = [
   {
     icon: 'verified',
-    iconBg: 'benefits-icon--navy',
+    iconBg: 'benefits__icon--navy',
     title: 'Las mejores compañías',
     text: 'Catálogo de comercializadoras de energía y operadoras de telecomunicaciones líderes, ya homologadas para que vendas con garantías.',
   },
   {
     icon: 'account_balance_wallet',
-    iconBg: 'benefits-icon--blue',
+    iconBg: 'benefits__icon--blue',
     title: 'Las mejores comisiones',
     text: 'Tarifas de comisión por encima de la media del sector, con pagos puntuales y total transparencia en cada contrato cerrado.',
   },
   {
     icon: 'speed',
-    iconBg: 'benefits-icon--orange',
+    iconBg: 'benefits__icon--orange',
     title: 'Tramitación rápida',
     text: 'Plataforma ágil que reduce la burocracia. Alta en 0-48 horas y gestión de contratos sin fricciones.',
   },
@@ -30,13 +30,13 @@ const benefits = [
       </p>
     </header>
 
-    <div class="benefits-grid">
+    <div class="benefits__grid">
       {benefits.map((item, i) => (
-        <article class="benefits-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
-          <div class={`benefits-icon ${item.iconBg}`}>
+        <article class="benefits__card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+          <div class={`benefits__icon ${item.iconBg}`}>
             <span class="material-symbols-outlined">{item.icon}</span>
           </div>
-          <h3 class="headline-lg benefits-card-title">{item.title}</h3>
+          <h3 class="headline-lg benefits__card-title">{item.title}</h3>
           <p class="body-md text-muted">{item.text}</p>
         </article>
       ))}
@@ -50,20 +50,20 @@ const benefits = [
     border-radius: var(--radius-2xl);
   }
 
-  .benefits-grid {
+  .benefits__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .benefits-card {
+  .benefits__card {
     padding: 2rem;
     border-radius: var(--radius-xl);
     background: #ffffff;
     border: 1px solid rgba(229, 234, 240, 0.5);
   }
 
-  .benefits-icon {
+  .benefits__icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,33 +73,33 @@ const benefits = [
     border-radius: var(--radius-lg);
   }
 
-  .benefits-icon .material-symbols-outlined {
+  .benefits__icon .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-size: var(--size-icon);
   }
 
-  .benefits-icon--navy {
+  .benefits__icon--navy {
     background: var(--color-cream);
     color: var(--color-navy);
   }
 
-  .benefits-icon--blue {
+  .benefits__icon--blue {
     background: rgba(30, 95, 140, 0.12);
     color: var(--color-blue);
   }
 
-  .benefits-icon--orange {
+  .benefits__icon--orange {
     background: rgba(247, 148, 29, 0.15);
     color: var(--color-orange);
   }
 
-  .benefits-card-title {
+  .benefits__card-title {
     margin-bottom: 0.75rem;
     color: var(--color-navy);
   }
 
   @media (min-width: 48rem) {
-    .benefits-grid {
+    .benefits__grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }

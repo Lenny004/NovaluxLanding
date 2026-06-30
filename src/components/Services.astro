@@ -4,8 +4,8 @@ const services = [
     title: 'Energía',
     description: 'Soluciones eléctricas para pymes y residenciales.',
     badge: 'Ahorro 20%',
-    badgeColor: 'services-badge--navy',
-    overlay: 'services-overlay--navy',
+    badgeColor: 'services__badge--navy',
+    overlay: 'services__overlay--navy',
     icon: 'electric_bolt',
     image: '/light.png',
   },
@@ -13,8 +13,8 @@ const services = [
     title: 'Gas',
     description: 'Suministro de gas natural con tarifas optimizadas.',
     badge: 'Tarifa Plana',
-    badgeColor: 'services-badge--blue',
-    overlay: 'services-overlay--blue',
+    badgeColor: 'services__badge--blue',
+    overlay: 'services__overlay--blue',
     icon: 'mode_heat',
     image: '/gas.png',
   },
@@ -22,8 +22,8 @@ const services = [
     title: 'Fibra',
     description: 'Conectividad de alta velocidad garantizada.',
     badge: '1Gbps',
-    badgeColor: 'services-badge--orange',
-    overlay: 'services-overlay--orange',
+    badgeColor: 'services__badge--orange',
+    overlay: 'services__overlay--orange',
     icon: 'router',
     image: '/fiber.png',
   },
@@ -31,8 +31,8 @@ const services = [
     title: 'Móvil',
     description: 'Líneas corporativas y particulares flexibles.',
     badge: '5G Ilimitado',
-    badgeColor: 'services-badge--navy',
-    overlay: 'services-overlay--navy',
+    badgeColor: 'services__badge--navy',
+    overlay: 'services__overlay--navy',
     icon: 'smartphone',
     image: '/mobile.png',
   },
@@ -48,18 +48,18 @@ const services = [
       </p>
     </header>
 
-    <div class="services-grid">
+    <div class="services__grid">
       {services.map((service, i) => (
-        <article class="services-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
-          <img class="services-image" src={service.image} alt={service.title} loading="lazy" />
-          <div class={`services-overlay ${service.overlay}`}></div>
-          <span class={`label-xs services-badge ${service.badgeColor}`}>{service.badge}</span>
-          <div class="services-content">
-            <div class="services-icon">
+        <article class="services__card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+          <img class="services__image" src={service.image} alt={service.title} loading="lazy" />
+          <div class={`services__overlay ${service.overlay}`}></div>
+          <span class={`label-xs services__badge ${service.badgeColor}`}>{service.badge}</span>
+          <div class="services__content">
+            <div class="services__icon">
               <span class="material-symbols-outlined">{service.icon}</span>
             </div>
-            <h3 class="headline-lg services-title">{service.title}</h3>
-            <p class="label-xs services-desc">{service.description}</p>
+            <h3 class="headline-lg services__title">{service.title}</h3>
+            <p class="label-xs services__desc">{service.description}</p>
           </div>
         </article>
       ))}
@@ -72,20 +72,20 @@ const services = [
     background: #ffffff;
   }
 
-  .services-grid {
+  .services__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
-  .services-card {
+  .services__card {
     position: relative;
     height: 24rem;
     border-radius: var(--radius-xl);
     overflow: hidden;
   }
 
-  .services-image {
+  .services__image {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -93,24 +93,24 @@ const services = [
     object-fit: cover;
   }
 
-  .services-overlay {
+  .services__overlay {
     position: absolute;
     inset: 0;
   }
 
-  .services-overlay--navy {
+  .services__overlay--navy {
     background: linear-gradient(to top, rgba(14, 42, 77, 0.9), rgba(14, 42, 77, 0.2), transparent);
   }
 
-  .services-overlay--blue {
+  .services__overlay--blue {
     background: linear-gradient(to top, rgba(30, 95, 140, 0.9), rgba(30, 95, 140, 0.2), transparent);
   }
 
-  .services-overlay--orange {
+  .services__overlay--orange {
     background: linear-gradient(to top, rgba(247, 148, 29, 0.9), rgba(247, 148, 29, 0.2), transparent);
   }
 
-  .services-badge {
+  .services__badge {
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -123,19 +123,19 @@ const services = [
     box-shadow: var(--shadow-soft);
   }
 
-  .services-badge--navy {
+  .services__badge--navy {
     color: var(--color-navy);
   }
 
-  .services-badge--blue {
+  .services__badge--blue {
     color: var(--color-blue);
   }
 
-  .services-badge--orange {
+  .services__badge--orange {
     color: var(--color-orange);
   }
 
-  .services-content {
+  .services__content {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -144,7 +144,7 @@ const services = [
     padding: 1.5rem;
   }
 
-  .services-icon {
+  .services__icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,29 +157,29 @@ const services = [
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .services-icon .material-symbols-outlined {
+  .services__icon .material-symbols-outlined {
     font-family: 'Material Symbols Outlined';
     font-size: var(--size-s);
     color: #ffffff;
   }
 
-  .services-title {
+  .services__title {
     margin-bottom: 0.25rem;
     color: #ffffff;
   }
 
-  .services-desc {
+  .services__desc {
     color: var(--color-bg);
   }
 
   @media (min-width: 40rem) {
-    .services-grid {
+    .services__grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 64rem) {
-    .services-grid {
+    .services__grid {
       grid-template-columns: repeat(4, 1fr);
     }
   }

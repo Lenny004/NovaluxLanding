@@ -82,7 +82,7 @@ function getFileUploadElements(form: HTMLFormElement): FileUploadElements | null
 
 function syncFileFieldDisplay(elements: FileUploadElements): void {
   const selectedFile = elements.fileInput.files?.[0];
-  elements.fileWrap.classList.toggle('is-filled', Boolean(selectedFile));
+  elements.fileWrap.classList.toggle('contact__file-wrap--filled', Boolean(selectedFile));
 
   if (elements.fileNameElement instanceof HTMLElement) {
     elements.fileNameElement.textContent = selectedFile
@@ -108,13 +108,13 @@ function bindFileUploadHandlers(form: HTMLFormElement, onSync: () => void): void
   ['dragenter', 'dragover'].forEach((eventName) => {
     elements.fileWrap.addEventListener(eventName, (event) => {
       event.preventDefault();
-      elements.fileWrap.classList.add('is-dragover');
+      elements.fileWrap.classList.add('contact__file-wrap--dragover');
     });
   });
 
   ['dragleave', 'drop'].forEach((eventName) => {
     elements.fileWrap.addEventListener(eventName, () => {
-      elements.fileWrap.classList.remove('is-dragover');
+      elements.fileWrap.classList.remove('contact__file-wrap--dragover');
     });
   });
 
@@ -160,7 +160,7 @@ function extractInvoiceFile(formData: FormData): File | undefined {
 }
 
 function showSuccessView(form: HTMLFormElement, successPanel: HTMLElement | null): void {
-  form.classList.add('is-hidden');
+  form.classList.add('contact__form--hidden');
 
   if (successPanel instanceof HTMLElement) {
     successPanel.hidden = false;
@@ -176,7 +176,7 @@ function createStatusWriter(statusElement: HTMLElement | null) {
     }
 
     statusElement.textContent = message;
-    statusElement.className = `label-s contact-status is-visible is-${statusType}`;
+    statusElement.className = `label-s contact__status contact__status--visible contact__status--${statusType}`;
   };
 }
 

@@ -4,52 +4,52 @@ const phases = [
     phase: 'Fase 1',
     title: 'Activación',
     text: 'Cobra un upfront competitivo por cada nuevo contrato dado de alta en la plataforma, abonado rápidamente.',
-    accent: 'commissions-marker--orange',
-    phaseColor: 'commissions-phase--orange',
+    accent: 'commissions__marker--orange',
+    phaseColor: 'commissions__phase--orange',
   },
   {
     phase: 'Fase 2',
     title: 'Recurrencia',
     text: 'Construye una cartera que te genere ingresos mes a mes. Tu esfuerzo de hoy rinde frutos a largo plazo.',
-    accent: 'commissions-marker--blue',
-    phaseColor: 'commissions-phase--blue',
+    accent: 'commissions__marker--blue',
+    phaseColor: 'commissions__phase--blue',
   },
   {
     phase: 'Fase 3',
     title: 'Sin límite de ingresos',
     text: 'No hay topes ni barreras. Cuanto más crezcas, mejores condiciones y bonus por volumen podrás alcanzar.',
-    accent: 'commissions-marker--gold',
-    phaseColor: 'commissions-phase--gold',
+    accent: 'commissions__marker--gold',
+    phaseColor: 'commissions__phase--gold',
   },
 ];
 ---
 
 <section class="commissions section" id="comisiones">
-  <div class="commissions-glow" aria-hidden="true"></div>
+  <div class="commissions__glow" aria-hidden="true"></div>
 
-  <div class="container commissions-inner">
-    <div class="commissions-grid">
-      <div class="commissions-intro" data-reveal>
-        <h2 class="display-xl commissions-title">Comisiones pensadas para que crezcas</h2>
-        <p class="body-lg text-inverse commissions-lead">
+  <div class="container commissions__inner">
+    <div class="commissions__grid">
+      <div class="commissions__intro" data-reveal>
+        <h2 class="display-xl commissions__title">Comisiones pensadas para que crezcas</h2>
+        <p class="body-lg text-inverse commissions__lead">
           Nuestro modelo de retribución está diseñado para premiar tanto la captación como la fidelización de tu cartera.
         </p>
-        <a href="#contacto" class="btn-primary commissions-cta">
+        <a href="#contacto" class="btn-primary commissions__cta">
           Solicitar dossier de comisiones
         </a>
       </div>
 
-      <div class="commissions-timeline">
-        <div class="commissions-line" aria-hidden="true"></div>
+      <div class="commissions__timeline">
+        <div class="commissions__line" aria-hidden="true"></div>
         {phases.map((item, i) => (
-          <div class="commissions-item" data-reveal style={`--reveal-delay: ${i * 120}ms`}>
-            <div class={`commissions-marker ${item.accent}`} aria-hidden="true">
-              <span class="commissions-dot"></span>
+          <div class="commissions__item" data-reveal style={`--reveal-delay: ${i * 120}ms`}>
+            <div class={`commissions__marker ${item.accent}`} aria-hidden="true">
+              <span class="commissions__dot"></span>
             </div>
-            <div class="commissions-item-content">
-              <span class={`label-s commissions-phase ${item.phaseColor}`}>{item.phase}</span>
-              <h3 class="headline-lg commissions-item-title">{item.title}</h3>
-              <p class="body-md text-inverse-soft commissions-item-text">{item.text}</p>
+            <div class="commissions__item-content">
+              <span class={`label-s commissions__phase ${item.phaseColor}`}>{item.phase}</span>
+              <h3 class="headline-lg commissions__item-title">{item.title}</h3>
+              <p class="body-md text-inverse-soft commissions__item-text">{item.text}</p>
             </div>
           </div>
         ))}
@@ -67,7 +67,7 @@ const phases = [
     border-radius: var(--radius-2xl);
   }
 
-  .commissions-glow {
+  .commissions__glow {
     position: absolute;
     top: 50%;
     right: 0;
@@ -80,32 +80,32 @@ const phases = [
     pointer-events: none;
   }
 
-  .commissions-inner {
+  .commissions__inner {
     position: relative;
     z-index: 1;
   }
 
-  .commissions-grid {
+  .commissions__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
     align-items: center;
   }
 
-  .commissions-title {
+  .commissions__title {
     margin-bottom: 1.5rem;
     color: #ffffff;
   }
 
-  .commissions-lead {
+  .commissions__lead {
     margin-bottom: 2rem;
   }
 
-  .commissions-cta {
+  .commissions__cta {
     width: 100%;
   }
 
-  .commissions-timeline {
+  .commissions__timeline {
     position: relative;
     padding-left: 2rem;
     display: flex;
@@ -113,7 +113,7 @@ const phases = [
     gap: 3rem;
   }
 
-  .commissions-line {
+  .commissions__line {
     position: absolute;
     left: 0.6875rem;
     top: 0.5rem;
@@ -122,11 +122,11 @@ const phases = [
     background: rgba(255, 255, 255, 0.1);
   }
 
-  .commissions-item {
+  .commissions__item {
     position: relative;
   }
 
-  .commissions-marker {
+  .commissions__marker {
     position: absolute;
     left: -2rem;
     top: 0.375rem;
@@ -141,83 +141,83 @@ const phases = [
     border: 2px solid;
   }
 
-  .commissions-marker--orange {
+  .commissions__marker--orange {
     border-color: var(--color-orange);
     box-shadow: 0 0 0.9375rem rgba(247, 148, 29, 0.4);
   }
 
-  .commissions-marker--blue {
+  .commissions__marker--blue {
     border-color: var(--color-blue);
     box-shadow: 0 0 0.9375rem rgba(30, 95, 140, 0.4);
   }
 
-  .commissions-marker--gold {
+  .commissions__marker--gold {
     border-color: var(--color-gold);
     box-shadow: 0 0 0.9375rem rgba(255, 193, 7, 0.4);
   }
 
-  .commissions-dot {
+  .commissions__dot {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: var(--radius-full);
   }
 
-  .commissions-marker--orange .commissions-dot {
+  .commissions__marker--orange .commissions__dot {
     background: var(--color-orange);
   }
 
-  .commissions-marker--blue .commissions-dot {
+  .commissions__marker--blue .commissions__dot {
     background: var(--color-blue);
   }
 
-  .commissions-marker--gold .commissions-dot {
+  .commissions__marker--gold .commissions__dot {
     background: var(--color-gold);
   }
 
-  .commissions-item-content {
+  .commissions__item-content {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .commissions-phase {
+  .commissions__phase {
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
 
-  .commissions-phase--orange {
+  .commissions__phase--orange {
     color: var(--color-orange);
   }
 
-  .commissions-phase--blue {
+  .commissions__phase--blue {
     color: var(--color-blue);
   }
 
-  .commissions-phase--gold {
+  .commissions__phase--gold {
     color: var(--color-gold);
   }
 
-  .commissions-item-title {
+  .commissions__item-title {
     color: #ffffff;
   }
 
-  .commissions-item-text {
+  .commissions__item-text {
     max-width: 32rem;
   }
 
   @media (min-width: 40rem) {
-    .commissions-cta {
+    .commissions__cta {
       width: auto;
     }
   }
 
   @media (min-width: 64rem) {
-    .commissions-grid {
+    .commissions__grid {
       grid-template-columns: 5fr 6fr;
       gap: 3rem;
     }
 
-    .commissions-timeline {
+    .commissions__timeline {
       grid-column: 2;
     }
   }

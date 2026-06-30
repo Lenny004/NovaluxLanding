@@ -6,8 +6,8 @@ const testimonials = [
     initial: 'M',
     name: 'Marta R.',
     role: 'Gestoría, Valencia',
-    avatarBg: 'testimonials-avatar--cream',
-    avatarColor: 'testimonials-avatar-text--navy',
+    avatarBg: 'testimonials__avatar--cream',
+    avatarColor: 'testimonials__avatar-text--navy',
   },
   {
     quote:
@@ -15,8 +15,8 @@ const testimonials = [
     initial: 'J',
     name: 'Javier P.',
     role: 'Comercial independiente',
-    avatarBg: 'testimonials-avatar--blue',
-    avatarColor: 'testimonials-avatar-text--blue',
+    avatarBg: 'testimonials__avatar--blue',
+    avatarColor: 'testimonials__avatar-text--blue',
   },
   {
     quote:
@@ -24,8 +24,8 @@ const testimonials = [
     initial: 'L',
     name: 'Laura G.',
     role: 'Pyme de servicios, Sevilla',
-    avatarBg: 'testimonials-avatar--orange',
-    avatarColor: 'testimonials-avatar-text--orange',
+    avatarBg: 'testimonials__avatar--orange',
+    avatarColor: 'testimonials__avatar-text--orange',
   },
 ];
 ---
@@ -39,16 +39,16 @@ const testimonials = [
       </p>
     </header>
 
-    <div class="testimonials-grid">
+    <div class="testimonials__grid">
       {testimonials.map((item, i) => (
-        <article class="testimonials-card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
-          <blockquote class="body-md text-muted testimonials-text">"{item.quote}"</blockquote>
-          <footer class="testimonials-author">
-            <div class={`testimonials-avatar ${item.avatarBg} ${item.avatarColor}`}>
+        <article class="testimonials__card card-lift" data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+          <blockquote class="body-md text-muted testimonials__text">"{item.quote}"</blockquote>
+          <footer class="testimonials__author">
+            <div class={`testimonials__avatar ${item.avatarBg} ${item.avatarColor}`}>
               {item.initial}
             </div>
             <div>
-              <div class="label-s testimonials-name">{item.name}</div>
+              <div class="label-s testimonials__name">{item.name}</div>
               <div class="label-xs text-muted">{item.role}</div>
             </div>
           </footer>
@@ -59,13 +59,13 @@ const testimonials = [
 </section>
 
 <style>
-  .testimonials-grid {
+  .testimonials__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 
-  .testimonials-card {
+  .testimonials__card {
     display: flex;
     flex-direction: column;
     padding: 2rem;
@@ -74,19 +74,19 @@ const testimonials = [
     border: 1px solid rgba(229, 234, 240, 0.5);
   }
 
-  .testimonials-text {
+  .testimonials__text {
     flex: 1;
     margin-bottom: 2rem;
     font-style: italic;
   }
 
-  .testimonials-author {
+  .testimonials__author {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
 
-  .testimonials-avatar {
+  .testimonials__avatar {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,36 +96,36 @@ const testimonials = [
     font-weight: 700;
   }
 
-  .testimonials-avatar--cream {
+  .testimonials__avatar--cream {
     background: var(--color-cream);
   }
 
-  .testimonials-avatar--blue {
+  .testimonials__avatar--blue {
     background: rgba(30, 95, 140, 0.12);
   }
 
-  .testimonials-avatar--orange {
+  .testimonials__avatar--orange {
     background: rgba(247, 148, 29, 0.15);
   }
 
-  .testimonials-avatar-text--navy {
+  .testimonials__avatar-text--navy {
     color: var(--color-navy);
   }
 
-  .testimonials-avatar-text--blue {
+  .testimonials__avatar-text--blue {
     color: var(--color-blue);
   }
 
-  .testimonials-avatar-text--orange {
+  .testimonials__avatar-text--orange {
     color: var(--color-orange);
   }
 
-  .testimonials-name {
+  .testimonials__name {
     color: var(--color-navy);
   }
 
   @media (min-width: 48rem) {
-    .testimonials-grid {
+    .testimonials__grid {
       grid-template-columns: repeat(3, 1fr);
     }
   }
