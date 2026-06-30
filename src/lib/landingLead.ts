@@ -1,3 +1,7 @@
+export const CRM_RESPONSE_STATUS = {
+  SUCCESS: 1,
+} as const;
+
 export type BuildLeadBodyOptions = {
   source: string;
   fullName: string;
@@ -56,13 +60,15 @@ export async function submitLandingLead(
     headers: { 'X-API-Key': apiKey },
     body,
   });
-  const result = await response.json().catch(() => null);
+  const responseBody = await response.json().catch(() => null);
 
-  if (!response.ok || result?.estado !== 1) {
+  if (!response.ok || responseBody?.estado !== CRM_RESPONSE_STATUS.SUCCESS) {
     const errorMessage =
-      result?.exception || result?.message || 'No se pudo enviar el formulario';
+      responseBody?.exception ||
+      responseBody?.message ||
+      'No se pudo enviar el formulario';
     throw new Error(errorMessage);
   }
 
-  return result;
+  return responseBody;
 }
