@@ -1,7 +1,9 @@
+/** Código de respuesta exitosa del CRM para operaciones de lead. */
 export const CRM_RESPONSE_STATUS = {
   SUCCESS: 1,
 } as const;
 
+/** Campos opcionales y obligatorios para construir el FormData del lead. */
 export type BuildLeadBodyOptions = {
   source: string;
   fullName: string;
@@ -14,6 +16,12 @@ export type BuildLeadBodyOptions = {
   invoice?: File;
 };
 
+/**
+ * Construye el cuerpo multipart que espera el endpoint de leads del CRM.
+ *
+ * @param options - Datos del formulario de contacto normalizados.
+ * @returns FormData listo para enviar con fetch.
+ */
 export function buildLeadBody(options: BuildLeadBodyOptions): FormData {
   const body = new FormData();
 
@@ -50,6 +58,15 @@ export function buildLeadBody(options: BuildLeadBodyOptions): FormData {
   return body;
 }
 
+/**
+ * Envía un lead al CRM y valida que la respuesta indique éxito.
+ *
+ * @param endpoint - URL del endpoint PHP de leads.
+ * @param apiKey - Clave API enviada en la cabecera X-API-Key.
+ * @param body - FormData con los campos del lead.
+ * @returns Cuerpo JSON de la respuesta del servidor.
+ * @throws Error con el mensaje del CRM si la petición falla o estado !== 1.
+ */
 export async function submitLandingLead(
   endpoint: string,
   apiKey: string,
