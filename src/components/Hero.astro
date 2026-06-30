@@ -89,44 +89,9 @@ const chartImage =
 </section>
 
 <script>
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.querySelectorAll<HTMLElement>('[data-count]').forEach((el) => {
-      const target = el.dataset.count ?? '';
-      el.textContent = target.replace(/\d+/g, '0');
+  import { initHeroCounter } from '../scripts/hero-counter';
 
-      const range = target.match(/^(\d+)-(\d+)(.*)$/);
-      const single = target.match(/^(\D*)(\d+)$/);
-
-      if (range) {
-        const maxA = Number(range[1]);
-        const maxB = Number(range[2]);
-        const suffix = range[3];
-        let a = 0;
-        let b = 0;
-
-        const timer = setInterval(() => {
-          a = Math.min(a + 1, maxA);
-          b = Math.min(b + 1, maxB);
-          el.textContent = `${a}-${b}${suffix}`;
-          if (a >= maxA && b >= maxB) clearInterval(timer);
-        }, 35);
-        return;
-      }
-
-      if (!single) return;
-
-      const prefix = single[1];
-      const max = Number(single[2]);
-      const step = Math.max(1, Math.round(max / 40));
-      let n = 0;
-
-      const timer = setInterval(() => {
-        n = Math.min(n + step, max);
-        el.textContent = `${prefix}${n}`;
-        if (n >= max) clearInterval(timer);
-      }, 40);
-    });
-  }
+  initHeroCounter();
 </script>
 
 <style>
